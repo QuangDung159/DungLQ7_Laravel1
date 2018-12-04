@@ -20,4 +20,12 @@ class MyController extends Controller
         // Gọi route qua tên route được define
         return redirect()->route("myRoute");
     }
+
+    public function getData(Request $req)
+    {
+        // path() : trả về đường dẫn dã gọi tới đây
+        echo $req->path() . "</br>";
+        echo $req->url() . "</br>";
+        echo $req->isMethod("get");
+    }
 }

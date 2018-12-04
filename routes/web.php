@@ -87,3 +87,6 @@ Route::get("goi_controller", "MyController@xinChao");
 
 // Truyền tham số từ url vào controller
 Route::get("thamso/{ten}", "MyController@khoaHoc");
+
+// Làm việc với request - response
+Route::get("goi", "MyController@getData");
