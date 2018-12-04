@@ -79,3 +79,8 @@ Route::group(["prefix" => "myGroup"], function () {
         echo "user 3";
     });
 });
+
+// Gọi controller
+// Route::get("{url}", "{tên controller}@{tên phương thức}")
+// http://localhost:8090/DungLQ7_Laravel1/public/goi_controller
+Route::get("goi_controller", "MyController@xinChao");
