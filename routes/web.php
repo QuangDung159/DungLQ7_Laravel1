@@ -84,3 +84,6 @@ Route::group(["prefix" => "myGroup"], function () {
 // Route::get("{url}", "{tên controller}@{tên phương thức}")
 // http://localhost:8090/DungLQ7_Laravel1/public/goi_controller
 Route::get("goi_controller", "MyController@xinChao");
+
+// Truyền tham số từ url vào controller
+Route::get("thamso/{ten}", "MyController@khoaHoc");

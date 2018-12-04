@@ -12,4 +12,12 @@ class MyController extends Controller
     {
         echo "Chào các bạn";
     }
+
+    public function khoaHoc($ten)
+    {
+        echo $ten;
+        die;
+        // Gọi route qua tên route được define
+        return redirect()->route("myRoute");
+    }
 }
