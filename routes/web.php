@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// http://localhost:8090/DungLQ7_Laravel1/public/khoahoc
+Route::get("khoahoc", function () {
+    return "Xin chao";
+});
+
+// http://localhost:8090/DungLQ7_Laravel1/public/khoapham/laravel
+Route::get("khoapham/laravel", function () {
+    echo "<h1>Xin chao laravel</h1>";
+});
