@@ -60,7 +60,13 @@ class MyController extends Controller
             echo "Đã có file";
             // Lưu file
             $file = $req->file("myfile");
-            $file->move("images", "save1.txt");
+            $fileName = $file->getClientOriginalName();
+            $fileExt = $file->getClientOriginalExtension();
+            if ($fileExt == "txt") {
+                $file->move("text", $fileName);
+            } else {
+                $file->move("images", "$fileName");
+            }
         } else {
             echo "Chưa có file";
         }
