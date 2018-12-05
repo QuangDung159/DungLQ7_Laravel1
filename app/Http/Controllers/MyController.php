@@ -28,4 +28,10 @@ class MyController extends Controller
         echo $req->url() . "</br>";
         echo $req->isMethod("get");
     }
+
+    public function postForm(Request $req)
+    {
+        // hoten : tên của input thuộc view "postForm.blade.php"
+        echo $req->hoten;
+    }
 }

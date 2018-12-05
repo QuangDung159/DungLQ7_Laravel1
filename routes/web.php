@@ -90,3 +90,13 @@ Route::get("thamso/{ten}", "MyController@khoaHoc");
 
 // Làm việc với request - response
 Route::get("goi", "MyController@getData");
+
+// Gửi dữ liệu với request
+Route::get("getform", function () {
+    // Gọi view có tên là portForm trong thư mục view
+    return view("postForm");
+});
+
+// Xử lý dữ liệu được gửi từ view "postFrom.blade.php"
+// Gửi dữ liệu qua function postForm thuộc MyController
+Route::post("postform", ["as" => "postform", "uses" => "MyController@postForm"]);
