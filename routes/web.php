@@ -100,3 +100,17 @@ Route::get("getform", function () {
 // Xử lý dữ liệu được gửi từ view "postFrom.blade.php"
 // Gửi dữ liệu qua function postForm thuộc MyController
 Route::post("postform", ["as" => "postform", "uses" => "MyController@postForm"]);
+
+// Cookie
+
+Route::get("setcookie", "Mycontroller@setCookie");
+
+Route::get("getcookie", "MyController@getCookie");
+
+// Upload file
+
+Route::get("uploadfile", function () {
+    return view("postFile");
+});
+
+Route::post("postfile", ["as" => "postfile", "uses" => "MyController@postFile"]);

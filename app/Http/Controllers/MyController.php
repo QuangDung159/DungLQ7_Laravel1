@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class MyController extends Controller
 {
@@ -32,6 +33,36 @@ class MyController extends Controller
     public function postForm(Request $req)
     {
         // hoten : tên của input thuộc view "postForm.blade.php"
-        echo $req->hoten;
+        echo $req->hoten . "</br>";
+        echo $req->input("hoten");
+    }
+
+    public function setCookie()
+    {
+        $res = new Response();
+        $res->withCookie(
+        // "{tên cookie}", "{Giá trị}", {thời gian (phút)}
+            "hoten", "Laravel Khoa Phạm", 1
+        );
+        return $res;
+    }
+
+    public function getCookie(Request $req)
+    {
+        return $req->cookie("hoten");
+    }
+
+    // Post file
+    public function postFile(Request $req)
+    {
+        // key : tên input
+        if ($req->hasFile("myfile")) {
+            echo "Đã có file";
+            // Lưu file
+            $file = $req->file("myfile");
+            $file->move("images", "save1.txt");
+        } else {
+            echo "Chưa có file";
+        }
     }
 }
