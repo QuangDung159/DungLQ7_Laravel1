@@ -71,4 +71,23 @@ class MyController extends Controller
             echo "Chưa có file";
         }
     }
+
+    public function getJSON()
+    {
+        $array = ["laravel" => "5", "php" => "7", "asp.net" => "8", "html" => "10"];
+        return response()->json($array);
+    }
+
+    public function showView()
+    {
+        // directory.view
+        return view("admin.khoapham");
+    }
+
+    // http://localhost:8090/DungLQ7_Laravel1/public/time/{$t}
+    public function time($t)
+    {
+        // Truyền tham số t qua myView
+        return view("myView", ["t" => $t]);
+    }
 }

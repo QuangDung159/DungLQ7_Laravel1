@@ -114,3 +114,23 @@ Route::get("uploadfile", function () {
 });
 
 Route::post("postfile", ["as" => "postfile", "uses" => "MyController@postFile"]);
+
+// JSON
+Route::get("getjson", "MyController@getJSON");
+
+// View
+Route::get("myview", "MyController@showView");
+
+Route::get("time/{t}", "MyController@time");
+
+// Share biến dùng chung cho các view
+View::share("khoahoc", "laravel");
+
+// Blade Template
+Route::get("blade", function () {
+    return view("pages.laravel");
+});
+
+Route::get("blade", function () {
+    return view("pages.php");
+});
