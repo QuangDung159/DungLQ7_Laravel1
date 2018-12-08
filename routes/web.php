@@ -136,3 +136,14 @@ Route::get("blade", function () {
 });
 
 Route::get("bladetemplate/{str}", "MyController@blade");
+
+
+// database
+Route::get("database", function () {
+    Schema::create("theloai", function ($table) {
+        $table->increments("id");
+        $table->string("ten", 100)->nullable();
+        $table->string("nsx", 100)->default("yamaha");
+    });
+    echo "Đã thực hiện lệnh tạo bảng";
+});
