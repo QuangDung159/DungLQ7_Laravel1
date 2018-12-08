@@ -29,7 +29,25 @@
     </div>
     <div>
         <?php
-        $arr = array("")
+        $arr = array("php", "asp", "html", "js")
         ?>
+        @if(!empty($arr))
+            @foreach($arr as $value)
+                {{$value}}
+            @endforeach
+        @else
+            {{"Rỗng"}}
+        @endif
+    </div>
+    <div>
+        @forelse($arr as $value)
+            {{-- continue khi thỏa điều kiện --}}
+            @continue($value == "php")
+
+            {{-- break khi thỏa diều kiện --}}
+            {{$value}}
+        @empty
+            {{"mảng rỗng"}}
+        @endforelse
     </div>
 @endsection
