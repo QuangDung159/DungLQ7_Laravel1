@@ -14,7 +14,7 @@ class MyController extends Controller
         echo "Chào các bạn";
     }
 
-    public function khoaHoc($ten)
+    public function khoaHoc(String $ten)
     {
         echo $ten;
         die;
@@ -85,9 +85,18 @@ class MyController extends Controller
     }
 
     // http://localhost:8090/DungLQ7_Laravel1/public/time/{$t}
-    public function time($t)
+    public function time(String $t)
     {
         // Truyền tham số t qua myView
         return view("myView", ["t" => $t]);
+    }
+
+    public function blade(String $str)
+    {
+        if ($str == "laravel") {
+            return view("pages.laravel");
+        } else {
+            return view("pages.php");
+        }
     }
 }

@@ -1,0 +1,19 @@
+#content {
+    width: 800px;
+    height: 500px;
+    border: 1px solid black;
+    background: #5e5d5d;
+    margin: auto;
+}
+
+#content h1, h2 {
+    text-align: center;
+}
+
+#header {
+    background: #2ab27b;
+}
+
+#footer {
+    background: #9b8a30;
+}

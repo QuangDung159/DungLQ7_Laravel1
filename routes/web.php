@@ -134,3 +134,5 @@ Route::get("blade", function () {
 Route::get("blade", function () {
     return view("pages.php");
 });
+
+Route::get("bladetemplate/{str}", "MyController@blade");
