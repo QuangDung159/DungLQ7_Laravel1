@@ -147,3 +147,31 @@ Route::get("database", function () {
     });
     echo "Đã thực hiện lệnh tạo bảng";
 });
+
+Route::get("lienketbang", function () {
+    Schema::create("sanpham", function ($table) {
+        $table->increments("id");
+        $table->string("tensanpham", 100);
+        $table->float("gia");
+        $table->integer("soluong")->defaulr(0);
+        $table->integer("id_loaisanpham")->unsigned();
+        // Tạo khóa phụ
+        $table->foreign("id_loaisanpham")->references("id")->on("loaisanpham");
+    });
+});
+
+Route::get("suabang", function () {
+    Schema::table("theloai", function ($table) {
+        $table->dropColumn("nsx");
+    });
+});
+
+Route::get("themcot", function () {
+    Schema::table("theloai", function ($table) {
+        $table->string("email", 100);
+    });
+});
+
+Route::get("doitenbang", function () {
+    Schema::rename("theloai", "category");
+});
