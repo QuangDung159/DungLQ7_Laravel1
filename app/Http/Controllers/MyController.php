@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use PhpParser\Node\Scalar\String_;
 
 class MyController extends Controller
 {
@@ -93,10 +94,11 @@ class MyController extends Controller
 
     public function blade(String $str)
     {
+        $khoahoc = "";
         if ($str == "laravel") {
-            return view("pages.laravel");
+            return view("pages.laravel", ["khoahoc" => $khoahoc]);
         } else {
-            return view("pages.php");
+            return view("pages.php", ["khoahoc" => $khoahoc]);
         }
     }
 }
