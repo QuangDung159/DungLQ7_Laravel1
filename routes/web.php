@@ -175,3 +175,15 @@ Route::get("themcot", function () {
 Route::get("doitenbang", function () {
     Schema::rename("theloai", "category");
 });
+
+Route::get("qb/get", function () {
+    $data = DB::table("users")->get();
+    foreach ($data as $item) {
+        // $key : tên cột
+        // $value : giá trị
+        foreach ($item as $key => $value) {
+            echo $key . " : " . $value . "</br>";
+        }
+        echo "<hr>";
+    }
+});
