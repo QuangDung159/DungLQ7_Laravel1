@@ -11,6 +11,12 @@
 |
 */
 
+use App\User;
+use Illuminate\Support\Facades\Route;
+use App\SanPham;
+use App\LoaiSanPham;
+use Illuminate\Support\Facades\Schema;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -176,6 +182,7 @@ Route::get("doitenbang", function () {
     Schema::rename("theloai", "category");
 });
 
+// Query builder
 Route::get("qb/get", function () {
     $data = DB::table("users")->get();
     foreach ($data as $item) {
@@ -186,4 +193,122 @@ Route::get("qb/get", function () {
         }
         echo "<hr>";
     }
+});
+
+// Select where
+Route::get("qb/where", function () {
+    // Lấy users có id = 4
+    $data = DB::table("users")->where("id", "=", 4)->get();
+    foreach ($data as $item) {
+        // $key : tên cột
+        // $value : giá trị
+        foreach ($item as $key => $value) {
+            echo $key . " : " . $value . "</br>";
+        }
+        echo "<hr>";
+    }
+});
+
+// Select id, name, email
+Route::get("qb/select", function () {
+    $data = DB::table("users")->select(["id", "name", "email"])
+        ->where("id", 4)->get();// Where id = 4
+    foreach ($data as $item) {
+        // $key : tên cột
+        // $value : giá trị
+        foreach ($item as $key => $value) {
+            echo $key . " : " . $value . "</br>";
+        }
+        echo "<hr>";
+    }
+});
+
+// select name as hoten
+Route::get("qb/select/raw", function () {
+    $data = DB::table("users")->select(DB::raw("name as hoten, email"))
+        ->where("id", 4)->get();// Where id = 4
+    foreach ($data as $item) {
+        // $key : tên cột
+        // $value : giá trị
+        foreach ($item as $key => $value) {
+            echo $key . " : " . $value . "</br>";
+        }
+        echo "<hr>";
+    }
+});
+
+// order by
+// limit
+Route::get("qb/select/orderby", function () {
+    $data = DB::table("users")->select(DB::raw("id, name as hoten, email"))
+        ->orderBy("id", "DESC")->skip(1)->take(5)
+        ->where("id", ">", 1)->get();// Where id > 1
+    foreach ($data as $item) {
+        // $key : tên cột
+        // $value : giá trị
+        foreach ($item as $key => $value) {
+            echo $key . " : " . $value . "</br>";
+        }
+        echo "<hr>";
+    }
+});
+
+Route::get("qb/update", function () {
+    DB::table("users")->where("id", 4)
+        ->update(["name" => "website"]);
+    echo "Đã update date";
+});
+
+Route::get("qb/delete", function () {
+    DB::table("users")->where("id", 4)->delete();
+    echo "Đã xóa";
+});
+
+Route::get("model/save", function () {
+    $user = new User();
+    $user->name = "Mai";
+    $user->email = "asfasdnoiqn@gmail.com";
+    $user->password = "Mat khau";
+    $user->save();
+    echo "Saved";
+});
+
+Route::get("model/query", function () {
+    // use App\User
+    $user = User::find(7);
+    echo $user->name;
+});
+
+Route::get("model/sanpham/save/{save}/{sl}", function ($ten, $soluong) {
+    $sanpham = new SanPham();
+    $sanpham->ten = "$ten";
+    $sanpham->soluong = $soluong;
+    $sanpham->save();
+    echo "Saved";
+});
+
+Route::get("model/sanpham/all", function () {
+    $sanpham = SanPham::all()->toJson();
+    echo $sanpham;
+});
+
+Route::get("model/sanpham/ten", function () {
+    $sanpham = SanPham::where("ten", "meo")->get()->toArray();
+    echo $sanpham[0]["ten"];
+});
+
+Route::get("model/sanpham/delete", function () {
+    SanPham::destroy(7);
+});
+
+Route::get("taocot", function () {
+    Schema::table("sanpham", function ($table) {
+        $table->integer("id_loaisanpham")->unsigned()->default(0);
+    });
+});
+
+Route::get("lienket", function () {
+    // sanpham_loaisanpham_n_1 : tên khóa ngoại
+    $data = SanPham::find(5)->sanpham_loaisanpham_n_1->toArray();
+    var_dump($data);
 });
