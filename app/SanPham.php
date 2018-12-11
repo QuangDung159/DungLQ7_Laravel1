@@ -10,7 +10,7 @@ class SanPham extends Model
     protected $table = "sanpham";
     public $timestamps = false;
 
-    public function sanpham_loaisanpham_n_1()
+    public function sanpham_loaisanpham_1_1()
     {
         return $this->belongsTo("App\LoaiSanPham", "id_loaisanpham", "id");
     }

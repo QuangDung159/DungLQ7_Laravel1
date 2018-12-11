@@ -312,3 +312,26 @@ Route::get("lienket", function () {
     $data = SanPham::find(5)->sanpham_loaisanpham_n_1->toArray();
     var_dump($data);
 });
+
+Route::get("lienketloaisanpham", function () {
+    $data = LoaiSanPham::find(1)->loaisanpham_sanpham_1_n->toArray();
+    var_dump($data);
+});
+
+Route::get("diem", function () {
+    echo "Bạn có điểm";
+})->name("diem")->middleware("MyMiddle");
+
+Route::get("loi", function () {
+    echo "Bạn chưa có điểm";
+})->name("loi");
+
+Route::get("nhapdiem", function () {
+    return view("nhapdiem");
+})->name("nhapdiem");
+
+Route::get("dangnhap", function () {
+    return view("dangnhap");
+});
+
+Route::post("login", "AuthController@login")->name("login");
