@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use App\SanPham;
 use App\LoaiSanPham;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
     return view('welcome');
@@ -335,3 +336,23 @@ Route::get("dangnhap", function () {
 });
 
 Route::post("login", "AuthController@login")->name("login");
+
+Route::get("logout", "AuthController@logout");
+
+Route::get("thu", function () {
+    return view("thanhcong");
+});
+
+Route::get("session", function () {
+    echo "Đã đặt session";
+    echo "</br>" . Session::get("KhoaHoc");
+    if (Session::has("KhoaHoc")) {
+        echo "Đã có session";
+        // Xóa session
+        Session::forget("KhoaHoc");
+    } else {
+        echo "Session không tồn tại";
+        // Khai báo session
+        Session::put("KhoaHoc", "Laravel");
+    }
+});
