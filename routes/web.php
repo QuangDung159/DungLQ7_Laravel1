@@ -356,3 +356,5 @@ Route::get("session", function () {
         Session::put("KhoaHoc", "Laravel");
     }
 });
+
+Route::get("tin", "TinController@index");
